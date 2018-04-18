@@ -1,0 +1,73 @@
+{
+  "status": 200,
+  "msg": "OK",
+  "data": {
+    "username": "admin",
+    "data": [
+      {
+        "id": "587ec01e2038373910083e8b",
+        "name": "优惠劵定义",
+        "pageIcon": "code",
+        "pageUrlStatus": 3,
+        "scripturl": "",
+        "children": [
+          {"id":"588084fb20383739100843de","name":"优惠劵定义","pageUrl":"couponDefine","pageIcon":"solution","pageUrlStatus":3,"scripturl":""},
+          {"id":"5880896e203837391008449e","name":"人工定向发劵","pageUrl":"couponSend","pageIcon":"solution","pageUrlStatus":3,"scripturl":""}
+        ]
+      },
+      {
+        "id": "587ec01e10083e8b",
+        "name": "营销活动管理",
+        "pageIcon": "code",
+        "pageUrlStatus": 3,
+        "scripturl": "",
+        "children": [
+          {"id":"588","name":"营销活动定义","pageUrl":"marketingActivityDefine","pageIcon":"solution","pageUrlStatus":3,"scripturl":""}
+        ]
+      },
+      {
+        "id": "5965901f2038375b3ece456d",
+        "name": "菜单配置管理",
+        "pageIcon": "code",
+        "pageUrlStatus": 3,
+        "scripturl": "",
+        "children": [
+          {"id":"5965905d2038375b3ece4585","name":"菜单列表配置","pageUrl":"menuConfig","pageIcon":"solution","pageUrlStatus":3,"scripturl":""}
+        ]
+      },
+      {
+        "id": "5968375b3ece456d",
+        "name": "前端界面配置管理",
+        "pageIcon": "code",
+        "pageUrlStatus": 3,
+        "scripturl": "",
+        "children": [
+          {"id":"5965905d203","name":"前端界面配置","pageUrl":"pageConfig","pageIcon":"solution","pageUrlStatus":3,"scripturl":""}
+        ]
+      },
+      {
+        "id": "5968375b3e",
+        "name": "雷鸟会员信息管理",
+        "pageIcon": "code",
+        "pageUrlStatus": 3,
+        "scripturl": "",
+        "children": [
+          {"id":"5965","name":"会员信息查询","pageUrl":"memberInformationInquiry","pageIcon":"solution","pageUrlStatus":3,"scripturl":""},
+          {"id":"595","name":"会员优惠劵查询","pageUrl":"memberCouponQuery","pageIcon":"solution","pageUrlStatus":3,"scripturl":""},
+          {"id":"65","name":"人工开通会员权益","pageUrl":"memberPeopleRight","pageIcon":"solution","pageUrlStatus":3,"scripturl":""},
+          {"id":"5","name":"人工回收会员权益","pageUrl":"memberPeopleBackRight","pageIcon":"solution","pageUrlStatus":3,"scripturl":""}
+        ]
+      },
+      {
+        "id": "587ec01e2038373981111b",
+        "name": "接口监控",
+        "pageIcon": "code",
+        "pageUrlStatus": 3,
+        "scripturl": "",
+        "children": [
+          {"id":"588084fb2d111e","name":"接口监控","pageUrl":"apiMonitor","pageIcon":"solution","pageUrlStatus":3,"scripturl":""}
+        ]
+      }
+    ]
+  }
+}

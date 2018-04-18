@@ -1,0 +1,97 @@
+.UploadBtnWrap{
+  display: inline-block;
+  margin:8px;
+  vertical-align: top;
+}
+.UploadBtn(){
+  display: inline-block;
+  text-align: center;
+  width: 48px;
+  height: 48px;
+  background-color: rgba(215, 216, 217, 0);
+  color: #fff;
+  font-size: 14px;
+  line-height: 48px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border:1px dashed;
+}
+.UploadBtnNormal{
+  .UploadBtn();
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+}
+.UploadBtnSmall{
+  .UploadBtn();
+}
+.img(){
+  .img{
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+}
+.imageViewerSmall{
+  .UploadBtn();
+  .img();
+  border: none;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #ebebeb;
+  }
+}
+.imageViewerNormal{
+  .UploadBtn();
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  border: none;
+  .img();
+  .img{
+    width: 90px;
+    height: 90px;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+}
+.imageViewerWrap{
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  margin: 4px 8px;
+  &:hover{
+    .closeImgBtn{
+      opacity: 1;
+    }
+  }
+}
+.uploader{
+  display: inline-block;
+  vertical-align: top;
+  margin: 4px 8px;
+}
+.closeImgBtn{
+  position: absolute;
+  opacity: 0;
+  top: -4px;
+  right:-4px;
+  cursor: pointer;
+  transition: all .2s;
+  transition-timing-function: ease-out;
+  -webkit-transition: all .2s;
+  -webkit-transition-timing-function: ease-out
+}

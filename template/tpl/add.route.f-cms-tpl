@@ -1,0 +1,96 @@
+/**
+ * Created By f-cms.
+ * {{date}}
+ */
+import React from "react";
+import {Modal, Row, Col, Form} from 'antd';
+import { FFormItems } from "../../../components/BusinessComponents";
+import style from './style.less';
+
+function AddComponent(props) {
+  const {state, dispatch, form,namespace} = props;
+  const {visible, formData, modalData} = state;
+  const {type} = modalData;
+  const {
+    validateFields,
+    getFieldsValue,
+  } = form;
+  const formConfig = [
+    {
+      name:"基础配置",
+      formConfig:[
+        {
+          label: "名称",
+          span: 12,
+          formItemProps: {
+          },
+          id: "name",
+          option: {
+            rules: [
+              {
+                required: true,
+                message: '请输入名称',
+              }
+            ]
+          },
+          component: <Input placeholder="请输入"/>
+        }
+      ]
+    }
+  ];
+  const okHandler = (isPublish = false) => {
+    validateFields((e) => {
+      if (e) {
+        console.log(e);
+        return false;
+      }
+      const data = {...formData,...getFieldsValue()};
+      dispatch({
+        type: namespace + `/add`,
+        payload: {
+          ...data
+        }
+      });
+
+    })
+  };
+  const cancelHandler = () => {
+    dispatch({
+      type: namespace + `/closeAddModal`
+    })
+  };
+  if (!visible) {
+    return <div/>
+  }
+  return (
+    <Modal
+      title={type == "add" ? "添加" : "修改"}
+      visible={visible}
+      onCancel={cancelHandler}
+      onOk={okHandler}
+      footer={
+        <div>
+          <Button type={"primary"} onClick={() => {
+            okHandler(false)
+          }}>保存</Button>
+          <Button type={"default"} onClick={() => {
+            cancelHandler()
+          }}>取消</Button>
+        </div>
+      }
+      width={600}
+    >
+      <div className={style.addComponentWrap}>
+        <Form>
+          <FFormItems
+            formConfig={formConfig}
+            {...form}
+            formData={formData}
+          />
+        </Form>
+      </div>
+    </Modal>
+  )
+}
+
+export default Form.create()(AddComponent)

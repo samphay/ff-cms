@@ -1,0 +1,157 @@
+/**
+ * Created By f-cms.
+ * {{date}}
+ */
+import {ajax} from './../../services/index';
+import {openNotice} from './../../utils';
+import {effects, subscriptions} from './../index';
+import {post,fetch} from "../index";
+const namespace = "{{namespace}}";
+const setFetchSendData = paramData => {
+  let {page,size,value,key,search} = paramData;
+  page -= 1;
+  const param = {};
+  Object.keys(paramData).map(key=>{
+    if(("page,size,value,key,search").indexOf(key)<0){
+      param[key] = paramData[key]
+    }
+  });
+  return {
+    page: JSON.stringify({
+      page,size,value,key,search
+    }),
+    ...param
+  }
+};
+const setFetchResult = ret => {
+  return {
+    list: ret.data,
+    total: parseInt(ret.iTotalDisplayRecords, 10),
+  }
+};
+const setAddProps = {
+  url: "",
+  type: "post",
+  setSendData(payload) {
+    return {
+      param: JSON.stringify({
+        ...payload
+      })
+    }
+  },
+  fixData(data) {
+    return {
+      isSuccess: data.return_code==1000,
+      successMsg: "保存成功",
+      success({put}) {
+        return [
+          put({
+            type:"closeAddModal"
+          })
+        ]
+      },
+      fail() {
+      },
+      failedMsg: "保存失败"
+    };
+  }
+};
+const setDeleteProps = {
+  url: "",
+  type: "post",
+  setSendData({data}) {
+    return {
+      code:data.code
+    }
+  },
+  fixData(data) {
+    return {
+      isSuccess: data.return_code==1000,
+      successMsg: "删除成功",
+      success() {
+      },
+      fail() {
+      },
+      failedMsg: "删除失败"
+    };
+  }
+};
+export default {
+  namespace,
+  state: {
+    addModalVisible: false,
+    formData: {},
+    list: [],
+    loading: false,
+    pageParam: {
+      page: 1,
+      size: 10,
+      search: '',
+      key: 'updateTime',
+      value: 'desc',
+    },
+    configData: {},
+    filterParam: {},
+    total: 0,
+    modalData: {}
+  },
+  reducers: {
+    save(state, {payload}) {
+      return {...state, ...payload};
+    },
+  },
+  effects: {
+    ...effects({
+      namespace,
+      setFetchSendData,
+      setFetchResult,
+      setAddProps,
+      setDeleteProps,
+      setConfigFieldsValue:[
+        {
+          key:"cpCode",
+          value:"tx"
+        }
+      ]
+    }),
+    * openAddModal({payload}, {put}) {
+      yield put({
+        type: "save",
+        payload: {
+          modalData: {...payload},
+          addModalVisible: true
+        }
+      });
+      yield put({
+        type: "getDetail",
+        payload: {
+          ...payload
+        }
+      });
+    },
+    * closeAddModal({payload}, {put}) {
+      yield put({
+        type: "save",
+        payload: {
+          addModalVisible: false,
+          modalData: {},
+          formData: {}
+        }
+      })
+    },
+    * getDetail({payload}, {put, call}) {
+      let {data} = payload;
+      if (data) {
+        yield put({
+          type: "save",
+          payload: {
+            formData: data
+          }
+        })
+      }
+    }
+  },
+  subscriptions: {
+    ...subscriptions({namespace})
+  },
+};

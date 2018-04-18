@@ -1,0 +1,13 @@
+export const PAGE_SIZE = 7;
+export const MODAL_TABLE_SIZE = 5;
+export const resource_base_url="http://testboss.op.my7v.com/";
+// export const CLOCK_URL = "/clock";
+// export const APPSTORE_URL = "/appstore";
+// export const SHAFAAPP_URL = "/shafaapp";
+export const CADILLAC_URL = "/cadillac";
+export const UPGRADE_URL = "/upgrade";
+export const BASE_URL = "/xbase";
+export const DEBUG = false; // 调试模式  true本地电脑调试, false服务器
+export const configDEBUG = false; // 配置信息模拟信息
+export const menuGroupId = ""; // 配置信息模拟信息
+// export const menuGroupId = ""; // 配置信息模拟信息

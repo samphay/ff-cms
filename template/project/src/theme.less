@@ -1,0 +1,182 @@
+
+@primary-color: #FFFFFF;
+@text-color: #FFFFFF;
+@text-color-secondary: #FFFFFF;
+@background-color-base: #3985C3;
+@body-background: #3985C3;
+@component-background: #285E89;
+@item-active-bg: rgba(0,0,0,0.3);
+@item-hover-bg: rgba(0,0,0,0.3);
+@table-row-hover-bg: rgba(0,0,0,0.2);
+@table-row-even-bg: rgba(0,0,0,0.3);
+@btn-primary-color: #FFFFFF;
+@btn-primary-bg: rgba(92, 184, 92, 0.55);
+@btn-default-color: #333333;
+@btn-default-bg: rgba(222, 222, 222, 0.55);
+@input-bg: rgba(0,0,0,.25);
+@tag-default-bg: transparent;
+@menu-bg: #285E89;
+
+:global {
+	body{
+		font-size: 14px;
+	}
+
+	tr.ant-table-expanded-row,
+	tr.ant-table-expanded-row:hover {
+	    background: @menu-bg;
+	 }
+
+	/* left menu*/
+	.ant-menu-horizontal{
+		border-bottom: none;
+	}
+
+	.ant-menu-inline{
+		border-right: none;
+	}
+	.ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title{
+		font-size: 14px;
+		border-bottom: 1px solid rgba(254,182,203,.15);
+	}
+	.ant-menu-submenu .ant-menu-sub{
+		background: @item-active-bg;
+	}
+
+	/*right content*/
+	.ant-card-bordered{
+		border:none;
+	}
+	.ant-table-thead > tr > th{
+		color: #fff;
+	}
+	.ant-table-tbody > tr > td{
+		border-bottom: 1px solid rgba(254, 182, 203, 0.5);
+	}
+	.ant-table-tbody > tr:nth-child(even){
+		background: @table-row-even-bg;
+	}
+
+	/*Pagination*/
+	.ant-pagination-item-active {
+	   	background-color: #E91E63;
+	   	border-color: #FFFFFF;
+	 }
+
+	 /*select-dropdown*/
+	 .ant-select-dropdown-menu-item:hover {
+ 	   background-color: @item-active-bg;
+ 	}
+
+ 	.ant-checkbox-inner:after {
+    -webkit-transform: rotate(45deg) scale(0);
+        -ms-transform: rotate(45deg) scale(0);
+            transform: rotate(45deg) scale(0);
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    display: table;
+    width: 5px;
+    height: 8px;
+    border: 2px solid #000;
+    border-top: 0;
+    border-left: 0;
+    content: ' ';
+    transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6);
+  }
+
+  .ant-checkbox-checked .ant-checkbox-inner:after {
+    -webkit-transform: rotate(45deg) scale(1);
+        -ms-transform: rotate(45deg) scale(1);
+            transform: rotate(45deg) scale(1);
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    display: table;
+    width: 5px;
+    height: 8px;
+    border: 2px solid #000;
+    border-top: 0;
+    border-left: 0;
+    content: ' ';
+    transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+  }
+
+  .ant-btn:hover,
+  .ant-btn:focus,
+  .ant-btn:active,
+  .ant-btn.active {
+    color: #000;
+    background: rgba(222,222,222,1);
+  }
+
+  .ant-btn-primary:hover,
+  .ant-btn-primary:focus {
+    color: #FFFFFF;
+    background-color: rgba(92, 184, 92, 1);
+    border-color: rgba(92, 184, 92, 1);
+  }
+  .ant-calendar-body .ant-calendar-selected-day .ant-calendar-date{
+    background: #1c4260;
+  }
+  .ant-modal-body .ant-select-disabled .ant-select-selection{
+    background: #1c4260;
+  }
+  .ant-calendar-picker .ant-input[disabled]{
+    background-color:#1c4260;
+    color:white;
+  }
+  input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
+    color: #cfcfcf !important;
+  }
+  .ant-select-selection__placeholder{
+    color: #cfcfcf !important;
+  }
+  .ant-calendar-picker-container .ant-calendar .ant-calendar-ok-btn{
+    padding-top: 4px;
+  }
+  .ant-tree-checkbox .ant-tree-checkbox-inner{
+    background: #285e89;
+  }
+  .ant-tree-checkbox-checked .ant-tree-checkbox-inner, .ant-tree-checkbox-indeterminate .ant-tree-checkbox-inner{
+    background: inherit !important;
+  }
+  .ant-btn:hover{
+    background: #4bc771 !important;
+  }
+
+  .uploaderNoAnimate{
+    .ant-upload-list .ant-upload-animate-enter,
+    .ant-upload-list .ant-upload-animate-leave,
+    .ant-upload-list .ant-upload-animate-inline-enter,
+    .ant-upload-list .ant-upload-animate-inline-leave {
+      -webkit-animation-duration: 0s !important;
+      animation-duration: 0s !important;
+    }
+  }
+  .ant-calendar-disabled-cell .ant-calendar-date{
+    background: #1b485f !important;
+  }
+  ::-webkit-scrollbar{
+    width:1.5px;
+    height:0px;
+  }
+  ::-webkit-scrollbar-button{
+    width: 1px;
+  }
+
+  ::-webkit-scrollbar-thumb{
+    background: #fcf8f7;
+    border-radius:1px;
+  }
+  .apiconfig .ant-checkbox-checked .ant-checkbox-inner::after{
+    border: 2px solid #d20707;
+  }
+  .layout-app-main{
+    width: 90%;
+  }
+  .ant-input-group-addon{
+    background:none;
+  }
+}
+

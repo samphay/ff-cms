@@ -1,0 +1,36 @@
+{
+  "entry": "src/index.js",
+  "theme": "src/theme.js",
+  "disableCSSModules": false,
+  "hash":true,
+  "proxy": {
+      "/": {
+            "target": "http://testboss.op.my7v.com/",
+            "changeOrigin": true,
+            "pathRewrite": { "^/" : "" }
+      },
+      "/a": {
+            "target": "http://vboss.op.my7v.com/",
+            "changeOrigin": true,
+            "pathRewrite": { "^/" : "" }
+      }
+  },
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime",
+        "transform-decorators-legacy",
+        ["import", { "libraryName": "antd", "style": true }]
+      ]
+    },
+    "production": {
+      "publicPath":"./",
+      "extraBabelPlugins": [
+        "transform-runtime",
+        "transform-decorators-legacy",
+        ["import", { "libraryName": "antd", "style": true }]
+      ]
+    }
+  }
+}

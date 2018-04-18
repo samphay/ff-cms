@@ -1,0 +1,10 @@
+const routeConfig = [
+    {
+        path: '/{{namespace}}/:MenuId',
+        name: '{{menuName}}',
+        getIndexRoute(nextState, cb) {
+            registerModel(app, require("./models/{{parentPath}}/{{namespace}}"));
+            cb(null, {component: require("./routes/{{parentPath}}/{{namespace}}/index")})
+        }
+    }
+];

@@ -1,0 +1,30 @@
+.appAuthTableWrap{
+
+}
+.tableTitle{
+  padding: 4px 0;
+  overflow: hidden;
+  height: 42px;
+  .listInfo{
+    position:absolute;
+    bottom:0;
+  }
+
+  .searchWrap{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+:global{
+  body{
+    .ant-table-tbody{
+      .tableRowError{
+        td{
+          color: #f00;
+        }
+      }
+    }
+  }
+
+}

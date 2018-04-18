@@ -1,0 +1,73 @@
+/**
+ * Created By f-cms.
+ * {{date}}
+ */
+import React from 'react';
+import {connect} from 'dva';
+import Index from './../../Index';
+import {Modal} from "antd";
+import Add from "./add";
+
+const namespace = "{{namespace}}";
+
+function PageComponent(props) {
+  const {dispatch, state} = props;
+  const {formData, addModalVisible} = state;
+  const handlePools = {
+    add(data) {
+      dispatch({
+        type: namespace + `/openAddModal`,
+        payload: {
+          ...data
+        }
+      })
+    },
+    edit(data) {
+      dispatch({
+        type: namespace + `/openAddModal`,
+        payload: {
+          ...data
+        }
+      })
+    },
+    del(data) {
+      Modal.confirm({
+        content:"你确定要删除这条数据吗？",
+        onOk(){
+          dispatch({
+            type: namespace + `/delete`,
+            payload: {
+              ...data
+            }
+          })
+        }
+      })
+    }
+  };
+  return (
+    <Index
+      {...props}
+      handlePools={handlePools}
+      title={"{{parentName}}>{{menuName}}"}
+      actionHead={namespace}
+    >
+      <Add
+        dispatch={dispatch}
+        namespace={namespace}
+        state={
+          {
+            ...state,
+            formData,
+            visible: addModalVisible
+          }
+        }
+      />
+    </Index>
+  );
+}
+
+function propsMap(state) {
+  return {state: state[namespace]};
+}
+
+export default connect(propsMap)(PageComponent);

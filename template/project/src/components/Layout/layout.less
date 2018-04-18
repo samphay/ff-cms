@@ -1,0 +1,112 @@
+@import "./theme.less";
+:global{
+  body{
+    .layout-app-content {
+      flex: 1;
+      display: flex;
+      position: absolute;
+      left: 240px;
+      top: 62px;
+      right:0px;
+      bottom: 40px;
+      padding: 30px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .layout-app-main {
+      padding: 0 8px;
+      flex: 1 0 auto;
+    }
+
+    .layout-footer-main {
+      position: absolute;
+      width: 100%;
+      //height: 41px;
+      bottom: 0;
+      text-align: center;
+      color: rgba(255, 255, 255, 1);
+      border-top: 1px solid rgba(254,182,203,.5);
+      background: @menu-bg;
+      line-height: 12px;
+      border-top: 1px solid rgba(169, 169, 169, 0.5);
+      padding: 14px 0 0;
+    }
+    .layout-header-main {
+      position: absolute;
+      width: 100%;
+      height: 62px;
+      z-index: 1000;
+      background: @menu-bg;
+      border-bottom: 1px solid #4b6b92;
+      overflow: hidden;
+    }
+    .layout-header-logoWrap{
+      font-size: 0;
+      padding: 8px 16px;
+      .layout-header-logo {
+        /*position: absolute;*/
+        display: inline-block;
+        vertical-align: top;
+        width: 50px;
+        height: 50px;
+        margin: 12px 0;
+        background: url(../../assets/logo.png) no-repeat;
+        background-size: contain;
+      }
+      .layout-header-title{
+        padding: 14px 10px;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 16px;
+      }
+    }
+
+
+
+
+    .layout-header-nav {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      line-height: 60px !important;
+    }
+
+    .layout-leftMenu-normal {
+      position: absolute;
+      width: 240px;
+      top: 62px;
+      bottom: 40px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border-right: 1px solid rgba(254,182,203,.5);
+      background: @menu-bg;
+      .ant-menu-item{
+        &.ant-menu-item-selected{
+          a{
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+        &:hover{
+          a{
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+        a{
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+
+
+    }
+
+    .layout-leftMenu-main {
+
+    }
+    .spin {
+      .ant-spin-container {
+        height: 100vh;
+      }
+    }
+  }
+}

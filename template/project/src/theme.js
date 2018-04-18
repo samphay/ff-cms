@@ -1,0 +1,31 @@
+module.exports = () => {
+  return {
+    "@font-size-base": "12px",
+    "@primary-color": "#FFFFFF",
+    "@text-color": "#FFFFFF",
+    "@text-color-secondary": "#FFFFFF",
+    "@background-color-base": "#3985C3",
+    "@body-background": "#3985C3",
+    "@component-background": "#285E89",
+    "@item-active-bg": "rgba(0,0,0,0.3)",
+    "@item-hover-bg": "rgba(0,0,0,0.3)",
+    "@table-row-hover-bg": "rgba(0,0,0,0.2)",
+    "@btn-primary-color": "#FFFFFF",
+    "@btn-primary-bg": "rgba(92, 184, 92, 0.55)",
+    "@btn-default-color": "#333333",
+    "@btn-default-bg": "rgba(222, 222, 222, 0.55)",
+    "@input-bg": "rgba(0,0,0,.25)",
+    "@tag-default-bg": "transparent",
+    "@menu-bg": "#285E89",
+    "@popover-bg": "transparent",
+    "@table-header-bg": "#3985C3",
+    "@table-header-sort-bg": "#3985C3",
+    "@table-selected-row-bg": "#3985C3",
+    "@table-padding-vertical": "16px",
+    "@table-padding-horizontal": "16px",
+    "@switch-height": "22px",
+    "@switch-sm-height": "16px",
+    "@switch-disabled-opacity": "0.4",
+    "@switch-color": "#5cb85c"
+  };
+};
