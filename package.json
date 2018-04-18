@@ -1,6 +1,6 @@
 {
   "name": "ff-cms",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ffalcon-cms-cli",
   "bin": {
     "f-cms": "./bin/f-cms.js"
