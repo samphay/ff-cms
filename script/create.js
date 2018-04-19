@@ -2,6 +2,7 @@
  * CopyRight Samphay.
  * 2018/4/17
  */
+require("../util/index");
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const fs = require('fs');
@@ -16,12 +17,20 @@ function create(projectName="new_FFalcon_cms") {
             default: function () {
                 return projectName;
             }
+        },
+        {
+            type: 'input',
+            name: 'title',
+            message: "please input your project title",
+            default: function () {
+                return projectName;
+            }
         }
     ];
     /**
      * TODO:need to validate input value
      */
-    inquirer.prompt(questions).then(({projectName}) => {
+    inquirer.prompt(questions).then(({projectName,title}) => {
         let templatePath = path.resolve(__dirname,"../template/project");
         let workPath = path.resolve("./"+projectName);
         /**
@@ -34,11 +43,14 @@ function create(projectName="new_FFalcon_cms") {
                         console.log(error);
                         process.exit()
                     }
+                    let configText = fs.readFileSync(path.resolve(workPath,"./src/utils/config.js"),"utf-8");
+                    configText = configText.reDLBrace({title});
+                    fs.writeFileSync(path.resolve(workPath,"./src/utils/config.js"),configText);
                     console.log(chalk.green(`\n √ Project [${projectName}] is created!`));
                     // console.log(chalk.green('\n '));
                     console.log(chalk.green(`\n project path is : ${workPath}`));
                     console.log(chalk.green(`\n 😁 Please enjoy your work!`));
-                    // process.exit()
+                    process.exit(0)
                 })
             }else{
                 console.log(chalk.red(`\n × ${workPath} is existed!`));
