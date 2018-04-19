@@ -13,7 +13,8 @@ export default function ({history, app}) {
       cached[model.namespace] = 1;
     }
   }
-  const defaultRoutes = [
+  const configRoutes = [];
+  const routes = [
     {
       path: '/login',
       app: app,
@@ -99,20 +100,16 @@ export default function ({history, app}) {
             cb(null, {component: require("./routes/configMenu/add")})
             // })
           },
+        },
+        ...configRoutes,
+        {
+          path: "*",
+          component: ({location}) => {
+            return <div>【{location.pathname}】正在努力开发……</div>
+          }
         }
       ]
     }
-  ];
-  const configRoutes = [];
-  const routes = [
-    ...defaultRoutes,
-    ...configRoutes,
-    {
-      path: "*",
-      component: ({location}) => {
-        return <div>【{location.pathname}】正在努力开发……</div>
-      }
-    },
   ];
   return <div>
     <Router history={history} routes={routes}/>
