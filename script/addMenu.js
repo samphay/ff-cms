@@ -56,6 +56,17 @@ function mkdir(path,cb) {
         cb&&cb();
     })
 }
+function readFile(path,cb) {
+    fs.readFile(path,"utf-8",function (err,data) {
+        if(err){
+            console.log(chalk.red(`readFile [${path}] err:`,err));
+            return false
+            // console.log(chalk.red("mkdir err:",err))
+        }
+        // console.log(chalk.green(`\n ✔ dir [${path}] is created!`));
+        cb&&cb(data);
+    })
+}
 function createFiles(data, files,output) {
     files.map(({name,type})=>{
         const tplFile = tpl[name];
@@ -69,38 +80,41 @@ function createFiles(data, files,output) {
                 }
             });
         }
-        let text = fs.readFileSync(tplFile, 'utf8');
-        text = text.reDLBrace(data);
-        fs.exists(outputFile,function (exit) {
-            if(exit){
-                console.log(chalk.red(`\n ✘ [${outputFile}] is exited!`))
-            }else{
-                fs.writeFile(outputFile, text,function (err) {
-                    if(err){
-                        console.log(err)
-                    }
-                    console.log(chalk.green(`\n ✔ [${outputFile}] is created!`))
-                });
-            }
+        readFile(tplFile,function (text) {
+            text = text.reDLBrace(data);
+            fs.exists(outputFile,function (exit) {
+                if(exit){
+                    console.log(chalk.red(`\n ✘ [${outputFile}] is exited!`))
+                }else{
+                    fs.writeFile(outputFile, text,function (err) {
+                        if(err){
+                            console.log(err)
+                        }
+                        console.log(chalk.green(`\n ✔ [${outputFile}] is created!`))
+                    });
+                }
+            });
         });
+
     })
 }
 function createRouter(data) {
     const tplFile = tpl.routerConfig;
-    let text = fs.readFileSync(tplFile, 'utf8');
-    text = text.reDLBrace(data);
-    const {ast} = babel.transform(text, {
-        babelrc: false,
-        plugins: [
-            "syntax-jsx"
-        ]
+    readFile(tplFile, function (text) {
+        text = text.reDLBrace(data);
+        const {ast} = babel.transform(text, {
+            babelrc: false,
+            plugins: [
+                "syntax-jsx"
+            ]
+        });
+        // fs.writeFileSync("ast.json", JSON.stringify(ast, null, 2));
+        addRouterConfig(ast.program.body[0].declarations[0].init.elements[0]);
+        /*ast.program.body.map((items, n) => {
+            const element = items.declarations[0].init.elements[0];
+            addRouterConfig(element)
+        });*/
     });
-    // fs.writeFileSync("ast.json", JSON.stringify(ast, null, 2));
-    addRouterConfig(ast.program.body[0].declarations[0].init.elements[0]);
-    /*ast.program.body.map((items, n) => {
-        const element = items.declarations[0].init.elements[0];
-        addRouterConfig(element)
-    });*/
 }
 function addMenu() {
     const questions = [
@@ -151,31 +165,32 @@ function addMenu() {
 
 function addRouterConfig(element) {
     // let filePath = path.resolve(__dirname, "./router2.js");
-    let text = fs.readFileSync(routerFile, 'utf8');
-    const {ast} = babel.transform(text, {
-        babelrc: false,
-        plugins: [
-            "syntax-jsx"
-        ]
-    });
-    ast.program.body.map((items, n) => {
-        if (items.declaration) {
-            items.declaration.body.body.map((Variable, m) => {
-                if (Variable.type === "VariableDeclaration") {
-                    if (Variable.declarations[0].id.name === "configRoutes") {
-                        found = true;
-                        ast.program.body[n].
-                            declaration.body.body[m].
-                            declarations[0].init.elements.push(element)
-                        // fs.writeFileSync("ast.json", JSON.stringify(Variable, null, 2));
+    readFile(routerFile, function (text) {
+        const {ast} = babel.transform(text, {
+            babelrc: false,
+            plugins: [
+                "syntax-jsx"
+            ]
+        });
+        ast.program.body.map((items, n) => {
+            if (items.declaration) {
+                items.declaration.body.body.map((Variable, m) => {
+                    if (Variable.type === "VariableDeclaration") {
+                        if (Variable.declarations[0].id.name === "configRoutes") {
+                            found = true;
+                            ast.program.body[n].
+                                declaration.body.body[m].
+                                declarations[0].init.elements.push(element)
+                            // fs.writeFileSync("ast.json", JSON.stringify(Variable, null, 2));
+                        }
                     }
-                }
-            })
-        }
-    });
+                })
+            }
+        });
 // fs.writeFileSync("ast.json", JSON.stringify(ast,null,2));
-    const {code} = babel.transformFromAst((ast));
-    fs.writeFileSync(routerFile, beautify(code,{indent_size: 2,e4x:true}));
+        const {code} = babel.transformFromAst((ast));
+        fs.writeFileSync(routerFile, beautify&&beautify(code,{indent_size: 2,e4x:true}));
+    });
 }
 
 module.exports = {
