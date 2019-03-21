@@ -5,6 +5,8 @@
 require('../util/index');
 const inquirer = require('inquirer');
 const babel = require("babel-core");
+import traverse from "babel-traverse";
+import * as t from "babel-types";
 const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');

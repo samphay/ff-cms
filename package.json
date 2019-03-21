@@ -13,14 +13,18 @@
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.26.0",
+    "babel-generator": "^6.26.1",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-template": "^6.26.0",
+    "babel-traverse": "^6.26.0",
+    "babel-types": "^6.26.0",
+    "babylon": "^6.18.0",
     "chalk": "^2.4.0",
     "commander": "^2.15.1",
     "estraverse": "^4.2.0",
     "inquirer": "^5.2.0",
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
     "js-beautify": "^1.7.5"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
